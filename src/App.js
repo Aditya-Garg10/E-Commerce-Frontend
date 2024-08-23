@@ -16,7 +16,7 @@ import LatestCollection from './pages/LatestCollection';
 import AllReviews from './pages/AllReviews';
 // import { message } from 'antd';
 
-export const HOST = "http://localhost:8000"
+export const HOST = "https://e-commerce-backend-1hmj.onrender.com"
 
 
 function App() {
