@@ -1,0 +1,95 @@
+.main2{
+    height: auto;
+    width: 100%;    
+    padding: 50px;
+}
+
+.titles{
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-evenly;
+    
+}
+
+.titles h5 p{
+    flex-wrap: wrap;
+    width: 5px;   
+    display: flex; 
+}
+
+
+.main3{
+    padding: 50px;
+    width: 100%;
+    background-color: white;
+    margin-left: 3vw;
+    display: flex;
+    gap: 20px;
+}
+.main3 h3{
+    margin-bottom: 50px;
+    
+}
+
+.cart-total{
+    width: 50%;
+    
+}
+
+.coupen{
+    width: 50%;    
+    align-items: center;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    
+}
+
+.coupen button{
+    background-color: black;
+    color: white;
+    padding-right: 20px;
+    border-radius: 0;
+    padding-left: 20px;
+}
+
+.coupen input{
+    border-radius: 0;
+}
+.div1{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    
+}
+
+.div2{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.div3{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+
+@media only screen and (max-width: 500px){
+    .main2{
+        padding: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .main3{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-self: center;
+        padding: 10%;            
+    }
+}
