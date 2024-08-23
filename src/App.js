@@ -16,7 +16,7 @@ import LatestCollection from './pages/LatestCollection';
 import AllReviews from './pages/AllReviews';
 // import { message } from 'antd';
 
-export const HOST = "https://e-commerce-backend-1hmj.onrender.com"
+export const HOST = "https://e-commerce-backend-ssjr.onrender.com"
 
 
 function App() {
