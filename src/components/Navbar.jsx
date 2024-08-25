@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from './Context/Context';
-import {  FiSearch, FiShoppingBag, FiUser } from 'react-icons/fi'
+import { FiSearch, FiShoppingBag, FiUser } from 'react-icons/fi'
 import { FaBars, FaUser } from 'react-icons/fa6'
 import { Badge, message } from 'antd';
 import { Dropdown } from 'antd';
 import { GoHeartFill } from 'react-icons/go';
 import { IoLogIn, IoLogOut } from 'react-icons/io5';
+
 
 
 
@@ -70,15 +71,15 @@ const Navbar = () => {
   }
 
 
-  
+
   const { getTotalCartItems } = useContext(ShopContext)
 
 
-  const handleLogout = () =>{
-    if(localStorage.getItem("auth-token")){
+  const handleLogout = () => {
+    if (localStorage.getItem("auth-token")) {
       localStorage.removeItem("auth-token")
     }
-    else{
+    else {
       message.info("Please Login Or Signup")
     }
   }
@@ -87,39 +88,56 @@ const Navbar = () => {
     {
       key: '1',
       label: (
-        <Link className='flex gap-2 items-center font-semibold' to="/wishlist">
-          <GoHeartFill/> Wishlist
+        // 
+        <Link className='hover:text-blue-500 2xl:hidden md:flex flex gap-2 items-center font-semibold' to="/cart"><FiShoppingBag/> Cart
+        <Badge className='absolute -top-[2px] sm:text-[1px] right-[60px] z-10' count={getTotalCartItems()}>
+        </Badge>
         </Link>
+        
       ),
-    },
-    localStorage.getItem("auth-token") ? "" : 
+    },    
     {
       key: '2',
       label: (
-         <Link className='flex gap-2 items-center font-semibold' to="/login">
-        <IoLogIn/> LogIn
-      </Link> 
-      ),      
-    },    
-    localStorage.getItem("auth-token") ? "" : 
+        <Link className='flex gap-2 items-center font-semibold' to="/wishlist">
+          <GoHeartFill /> Wishlist
+        </Link>
+      ),
+    },
     {
       key: '3',
       label: (
-        <Link className='flex gap-2 items-center font-semibold' to="/signup">
-          <FaUser/> SignUp
+        <Link className='hover:text-blue-500 flex gap-2 items-center font-semibold' to="/searchBar"><FiSearch  />Search</Link>
+      ),
+    },
+    localStorage.getItem("auth-token") ? "" :
+      {
+        key: '4',
+        label: (
+          <Link className='flex gap-2 items-center font-semibold' to="/login">
+            <IoLogIn /> LogIn
+          </Link>
+        ),
+      },
+    localStorage.getItem("auth-token") ? "" :
+      {
+        key: '5',
+        label: (
+          <Link className='flex gap-2 items-center font-semibold' to="/signup">
+            <FaUser /> SignUp
+          </Link>
+        ),
+
+      },
+    localStorage.getItem("auth-token") ? {
+      key: '6',
+      label: (
+        <Link onClick={handleLogout} className='flex gap-2 items-center font-semibold' >
+          <IoLogOut /> LogOut
         </Link>
       ),
-      
-    },
-    localStorage.getItem("auth-token") ? {
-      key: '4',
-      label:(
-        <Link onClick={handleLogout} className='flex gap-2 items-center font-semibold' >
-        <IoLogOut /> LogOut
-      </Link>
-      ),
       danger: true,
-      
+
     } : ""
   ];
 
@@ -141,24 +159,41 @@ const Navbar = () => {
               <p className='hover:text-blue-500'><Link to="/latest">New & Featured</Link></p>
             </div>
 
-            <div className="flex relative overflow-visible items-center gap-3">           
-            <Link className='hover:text-blue-500' to="/searchBar"><FiSearch className='text-xl' /></Link>
-                  
-                <Badge className='absolute -top-[5px] sm:text-[1px] right-[25px] z-10' count={getTotalCartItems()}>
-                </Badge>
-                <Link className='hover:text-blue-500' to="/cart"><FiShoppingBag className='text-xl' /> </Link>
+            <Dropdown
+                menu={{
+                  items,
+                }}
+                className='2xl:hidden sm:block'
+              >
+                <Link onClick={(e) => e.preventDefault()}>
+                  <FiUser className='text-xl sm:block 2xl:hidden hover:text-blue-400 cursor-pointer' />
+                </Link>
+              </Dropdown>
               
-              
+
+            <div className="flex relative sm:hidden  overflow-visible items-center gap-3">
+              <Link className='hover:text-blue-500 ' to="/searchBar"><FiSearch className='text-xl' /></Link>
+
+              <Badge className='absolute -top-[5px] sm:text-[1px] right-[25px] z-10' count={getTotalCartItems()}>
+              </Badge>
+              <Link className='hover:text-blue-500' to="/cart"><FiShoppingBag className='text-xl' /> </Link>
+
+
               <Dropdown
                 menu={{
                   items,
                 }}
               >
-                <Link onClick={(e) => e.preventDefault()}>                  
-                 <FiUser className='text-xl hover:text-blue-400 cursor-pointer'/>                  
+                <Link onClick={(e) => e.preventDefault()}>
+                  <FiUser className='text-xl hover:text-blue-400 cursor-pointer' />
                 </Link>
               </Dropdown>
+              
             </div>
+
+
+
+
 
 
           </div>
@@ -170,13 +205,14 @@ const Navbar = () => {
 
       {
         toggle ?
-          <div ref={textRef} className="w-full  flex items-center h-[13vh] justify-around">
+          <div   className="w-full flex-col flex items-center h-[13vh] justify-around">
             <div className=" flex items-center text-md font-semibold gap-3">
               <p ><Link to="/men">Men</Link></p>
               <p ><Link to="/women">Woman</Link></p>
               <p ><Link to="/kid">Kids</Link></p>
               <p className='hover:text-blue-500'><Link to="/latest">New & Featured</Link></p>
-            </div>
+            </div>            
+            
           </div> : ""
 
       }

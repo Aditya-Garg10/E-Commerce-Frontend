@@ -22,18 +22,19 @@ export const HOST = "https://e-commerce-backend-ssjr.onrender.com"
 function App() {
 
 
-  const { setall_product } = useContext(ShopContext) 
+  const { setall_product , setloading } = useContext(ShopContext) 
   
 
   const fetchData = async()=>{
     const response = await fetch(`${HOST}/allProducts`,{
      method:"get"
  })
- 
+ setloading(true)
  const data =  await response.json()   
     setall_product(data)
     console.log(data)
     localStorage.setItem('productData',JSON.stringify(data))
+    setloading(false)
 }
 
 

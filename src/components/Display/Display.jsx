@@ -189,28 +189,28 @@ const Display = (props) => {
                 <Breadcrum product={product} />
 
                 <div className="flex w-full items-center  md:flex-col h-full ">
-                    <div className="flex flex-row h-full justify-center  items-center md:w-full w-1/2 ">
-                        <div className="flex flex-col md:flex-col py-5 gap-2  h-1/4 drop-shadow-lg  items-center  w-2/3">
+                    <div className="flex sm:mt-3 2xl:flex-row sm:flex-col-reverse sm:w-full h-full justify-center  items-center md:w-full w-1/2 ">
+                        <div className="flex  flex-col sm:flex-row sm:w-full sm:justify-center  md:flex-col py-5 gap-2  h-1/4 drop-shadow-lg  items-center  w-2/3">
                             {product.image.map((item,i)=>{
-                                return <img onClick={() => setselectedImage(item)} className='h-[16vh] md:h-[8vh] rounded-md cursor-pointer border-2 hover:border-gray-500' src={item} alt="" />
+                                return <img key={i} onClick={() => setselectedImage(item)} className='h-[16vh] sm:h-[12vh] md:h-[8vh] rounded-md cursor-pointer border-2 hover:border-gray-500' src={item} alt="" />
                             })}                                                        
                         </div>
-                        <div className="flex h-1/3 md:w-full border-1 border-gray-300 rounded-md p-8 shadow-md drop-shadow-lg shadow-gray-300 w-full">
+                        <div className="flex h-1/3 md:w-4/5 border-1 border-gray-300 rounded-md p-8 shadow-md drop-shadow-lg shadow-gray-300 w-full">
                             <img ref={textref} className='border-1 rounded-md' src={selectedImage} alt="" />
                         </div>
 
                     </div>
-                    <div className="flex gap-2 flex-col  md:items-center  h-full text-start p-20 w-1/2 md:w-full ">
+                    <div className="flex gap-2 flex-col sm:items-start md:items-center  h-full text-start sm:p-7 p-20 w-1/2 md:w-full ">
                         <p className='flex items-center gap-2 font-semibold'>
                             <FaStar className='text-orange-400' /> 4.5 ({Reviews.length} Reviews)
                         </p>
-                        <h1 className='text-2xl flex items-center justify-start font-bold gap-3 font-myFont'>{product.name} {liked ? <GoHeartFill onClick={handleClick} className='text-start text-red-400 text-3xl' /> : <GoHeart onClick={handleClick} className='text-start text-3xl' />}</h1>
-                        <h4 className='text-blue-400 text-xl font-bold'>${product.new_price}</h4>
+                        <h1 className='text-2xl sm:text-wrap flex items-center justify-start font-bold gap-3 font-myFont'>{product.name} {liked ? <GoHeartFill onClick={handleClick} className='text-start text-red-400 text-3xl' /> : <GoHeart onClick={handleClick} className='text-start text-3xl' />}</h1>
+                        <h4 className='text-blue-400 text-start text-xl font-bold'>${product.new_price}</h4>
 
                         <h1 className='text-xl mt-3 flex items-center justify-start font-semibold  font-myFont'>{product.category.toUpperCase()}S</h1>
-                        <div className="flex flex-wrap text-blue-400 gap-3">
+                        <div className="flex sm:w-full flex-row flex-wrap text-blue-400 gap-3">
                             {product.tags.map((tag,i)=>{
-                                return <h1 key={i} className='text-md  flex text-nowrap items-center rounded-sm justify-start font-semibold p-2 font-myFont border-2'>{tag.toUpperCase()}</h1>
+                                return <h1 key={i} className='text-md sm:text-sm flex text-nowrap items-center rounded-sm justify-start font-semibold p-2 font-myFont border-2'>{tag.toUpperCase()}</h1>
                             })}
                             
                         </div>
@@ -306,7 +306,7 @@ const Display = (props) => {
 
                 <div className="">
                     <h3 className='text-dark mt-20  font-myFont text-3xl font-semibold mb-5 '>Related Products</h3>
-                    <div className="row row-cols-2  row-cols-md-5  g-4">
+                    <div className="grid grid-cols-3 w-full sm:grid-cols-2 gap-2 2xl:px-5 sm:p-0 sm:gap-0">
                         {all_product.map((item, i) => {
                             if(item.category === category){
                                 return <Card

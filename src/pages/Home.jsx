@@ -1,4 +1,4 @@
-import React, { useEffect,useRef,useState } from 'react'
+import React, {  useEffect,useRef,useState } from 'react'
 import Hero from '../components/Hero'
 import Card from '../components/Cards/Card2.jsx'
 import "./Common.css"
@@ -7,6 +7,9 @@ import Hero2 from '../components/Hero2'
 import {gsap} from 'gsap'
 import Navbar from '../components/Navbar'
 import { HOST } from '../App.js'
+import { LoadingOutlined } from "@ant-design/icons";
+
+import { message } from 'antd'
 
 
 
@@ -14,11 +17,30 @@ import { HOST } from '../App.js'
 const Home = () => {
 
   const [collection, setCollections] = useState([]);
+  const [ loading , setloading ] = useState(true)
 
-  useEffect(()=>{
-    fetch(`${HOST}/newCollections`).then((resp)=>resp.json()).then((data)=>setCollections(data))
-    console.log(collection);
+
+  const fetchData = async() =>{
+    try {      
+      const response = await fetch(`${HOST}/newCollections`);
+      const data = await response.json()
+      if(data){
+        setCollections(data)
+        setloading(false)
+      }
+    } catch (error) {
+      message.error("Internal Server Error",error.message)
+      setloading(true)
+    }
+  }
+
+
+  useEffect(()=>{    
+   
+    fetchData()
   },[])
+
+  
 
   const textRef= useRef(null)
   
@@ -31,7 +53,7 @@ const Home = () => {
     
       <Hero/>
 
-      <div ref={textRef} className='flex flex-col gap-4 my-10 sm:my-4 sm:h-[30vh]  h-[40vh] justify-center  items-center  '>
+      <div ref={textRef} className='flex flex-col gap-4 mt-5  sm:my-4 sm:h-[30vh]  h-[40vh] justify-center  items-center  '>
         <p className="text-5xl sm:text-3xl text-black font-semibold">
             NEW COLLECTION
         </p>
@@ -40,13 +62,18 @@ const Home = () => {
 
         </p>
     </div>
-      <div className="container " ref={textRef}>
-      
-      <div className="row row-cols-2 w-full row-cols-md-3 g-4">
-      {collection.map((item,i)=>{
+      <div className=" flex justify-center w-full" ref={textRef}>
+      {loading ?
+      <div className='w-full text-center my-10 sm:my-5'>
+          <LoadingOutlined className='text-6xl'/>
+          <p className='font-myFont font-semibold mt-3'>loading..</p>
+        </div> :
+      <div className="grid grid-cols-3   w-full sm:grid-cols-2 gap-2 2xl:px-5 sm:p-0 sm:gap-0">
+      { collection.map((item,i)=>{
         return <Card key={i} id={item.id} category={item.category} Title={item.name} PriceOld={item.old_price} Price={item.new_price} Item={item.image} />
       })}
-      </div>                        
+      </div>
+      }                      
       </div>
       
       <Instabar/>

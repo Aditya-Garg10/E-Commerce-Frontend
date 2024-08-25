@@ -33,12 +33,12 @@ const AllReviews = () => {
     <div>
         
         <div className="flex flex-col gap-5 w-full h-full justify-center items-center sm:my-5 my-10">
-            <h1 className='text-4xl sm:text-2xl font-myFont  font-semibold'>Customers Experience on Capie.</h1>
+            <h1 className='text-4xl sm:text-2xl font-myFont text-center  font-semibold'>Customers Experience on Capie.</h1>
 
-            <div className="flex h-full md:w-full justify-center items-center md:p-0  w-full  px-0 overflow-auto">
+            <div className="flex h-full  md:w-full justify-center items-center md:p-0  w-full  px-0 overflow-auto">
             <Row className='flex  md:flex-col w-full  overflow-y-hidden   flex-row justify-center gap-3' gutter={20}>
                                 {Reviews.map((Review, i) => {
-                                    return <Col key={i}  span={10}>
+                                    return <Col key={i}  >
                                         <Card className='border-1 border-gray-400' bordered={true}>
                                             <h3 className='text-lg text-black text-nowrap font-semibold mb-2'>{Review.title}</h3>
                                             <h3 className='text-md text-gray-500 text-wrap font-semibold mb-2'>{Review.message}</h3>
