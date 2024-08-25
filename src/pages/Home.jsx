@@ -42,7 +42,7 @@ const Home = () => {
     </div>
       <div className="container " ref={textRef}>
       
-      <div className="row row-cols-1 row-cols-md-3 g-4">
+      <div className="row row-cols-2 w-full row-cols-md-3 g-4">
       {collection.map((item,i)=>{
         return <Card key={i} id={item.id} category={item.category} Title={item.name} PriceOld={item.old_price} Price={item.new_price} Item={item.image} />
       })}

@@ -14,8 +14,6 @@ const Hero2 = (props) => {
     backgroundSize: "cover",
     borderRadius: "24px",
     backgroundClip: "padding-box",
-
-
   };
 
   const contentStyle2 = {
