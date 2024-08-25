@@ -37,7 +37,7 @@ const Crad2 = (props) => {
         cover={
           <Carousel className='h-[50vh] overflow-y-hidden md:h-[25vh] 2xl:h-[50vh] sm:h-[20vh]' autoplay>            
             {props.Item.map((item, i) => {
-              return <div className='h-[25vh] overflow-y-hidden w-full   2xl:h-[50vh]'>
+              return <div className='h-[35vh] overflow-y-hidden w-full   2xl:h-[50vh]'>
                 <p className={`flex h-full w-full text-end bg-no-repeat rounded-xl bg-cover sm:bg-contain`} style={{backgroundImage:`url(${item})`}} ></p>
               </div>
             })}

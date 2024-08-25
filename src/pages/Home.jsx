@@ -1,6 +1,6 @@
 import React, { useEffect,useRef,useState } from 'react'
 import Hero from '../components/Hero'
-import Card from '../components/Cards/Card'
+import Card from '../components/Cards/Card2.jsx'
 import "./Common.css"
 import Instabar from '../components/Instabar.jsx'
 import Hero2 from '../components/Hero2'
